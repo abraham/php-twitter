@@ -6,7 +6,7 @@
  * 
  * @author Travis Dent <tcdent@gmail.com>
  * @copyright (c) 2009 Travis Dent.
- * @version 0.1.1
+ * @version 0.2
  * 
  * Usage:
  * 
@@ -20,6 +20,9 @@
  * 
  * // Send a direct message.
  * $twitter->direct_messages->new(array('user' => 12345, 'text' => 'foo'));
+ * 
+ * // Search.
+ * $twitter->search(array('q' => 'foo'));
  */
 
 class Twitter {
@@ -59,7 +62,10 @@ class Twitter {
         if(array_key_exists('id', $args))
             $uri .= '/'.$args['id']; unset($args['id']);
         
-        $url = sprintf("twitter.com/%s.%s", $uri, $this->format);
+        $url = sprintf("%s.twitter.com/%s.%s", 
+            ($method == 'search')? 'search' : 'www', 
+            $uri, 
+            $this->format);
         
         if(in_array($method, array('new', 'create', 'update', 'destroy'))){
             $curlopt[CURLOPT_POST] = TRUE;
