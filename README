@@ -5,6 +5,9 @@ Usage:
 
 $twitter = new Twitter('username', 'password');
 
+Login using OAuth:
+$twitter = new Twitter(new OAuth());
+
 // Get the public timeline.
 $tweets = $twitter->statuses->public_timeline();
 
@@ -13,3 +16,6 @@ $entries = $twitter->statuses->followers(array('page' => 2));
 
 // Send a direct message.
 $twitter->direct_messages->new(array('user' => 12345, 'text' => 'foo'));
+
+// Search.
+$twitter->search(array('q' => 'foo'));
