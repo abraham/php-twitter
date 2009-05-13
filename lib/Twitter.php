@@ -47,7 +47,7 @@ class Twitter {
     }
     
     public function __call($method, $args){
-        $args = (count($args) && is_array($args[0]))? $args[0] : FALSE;
+        $args = (count($args) && is_array($args[0]))? $args[0] : array();
         
         $curlopt = array(
             CURLOPT_USERPWD => sprintf("%s:%s", $this->user, $this->pass), 
